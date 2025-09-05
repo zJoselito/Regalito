@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Candado de Amor 💛</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden; /* permite que los corazones se vean flotando */
+      color: #333;
+    }
+
+    .container {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      text-align: center;
+      max-width: 400px;
+      z-index: 10;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: #d63384;
+    }
+
+    input {
+      padding: 10px;
+      border: 2px solid #d63384;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      width: 80%;
+      font-size: 1rem;
+    }
+
+    button {
+      background: #d63384;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    button:hover {
+      background: #b91c66;
+    }
+
+    .secret {
+      display: none;
+      margin-top: 1.5rem;
+      font-size: 1.1rem;
+      color: #444;
+    }
+
+    audio {
+      margin-top: 1rem;
+      width: 100%;
+    }
+
+    /* Estilos para corazones */
+    .heart {
+      position: absolute;
+      color: #ff4d6d;
+      font-size: 2rem;
+      animation: float 6s linear infinite;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) scale(1.5);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🔒 Nuestro Candado de Amor</h1>
+    <p>Ingresa la contraseña secreta para abrir la sorpresa 💛</p>
+    <input type="password" id="password" placeholder="Escribe aquí...">
+    <br>
+    <button onclick="checkPassword()">Abrir</button>
+
+    <div class="secret" id="secret">
+      <h2>✨ Sorpresa ✨</h2>
+      <p>Te amo Camila 💛 Este es nuestro cielo estrellado...</p>
+      <img src="mapa-estelar.png" alt="Mapa Estelar" style="max-width:100%; border-radius:12px;">
+
+      <!-- Canción personalizada -->
+      <audio id="song" controls autoplay>
+        <source src="cancion.mp3" type="audio/mpeg">
+        Tu navegador no soporta audio 😢
+      </audio>
+    </div>
+  </div>
+
+  <script>
+    function checkPassword() {
+      const input = document.getElementById("password").value;
+      const secret = document.getElementById("secret");
+      const song = document.getElementById("song");
+
+      // Cambia "teamo" por tu contraseña secreta
+      if (input === "teamo") {
+        secret.style.display = "block";
+        song.play();
+        lanzarCorazones();
+      } else {
+        alert("Contraseña incorrecta 💔 Intenta otra vez");
+      }
+    }
+
+    // Genera corazones flotando
+    function lanzarCorazones() {
+      for (let i = 0; i < 20; i++) {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (4 + Math.random() * 3) + "s";
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+          heart.remove();
+        }, 6000);
+      }
+      // Repite cada 2s mientras dure la canción
+      setInterval(() => {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (4 + Math.random() * 3) + "s";
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+          heart.remove();
+        }, 6000);
+      }, 2000);
+    }
+  </script>
+</body>
+</html>
